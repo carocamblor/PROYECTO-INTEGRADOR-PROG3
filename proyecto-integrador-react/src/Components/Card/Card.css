@@ -2,3 +2,19 @@
     width: 200px;
     height: 200px;
 }
+
+.mostrar{
+    display: block;
+}
+
+.ocultar{
+    display: none;
+}
+
+.borrar{
+    background-color: rgb(230, 70, 70);
+}
+
+.ver{
+    background-color: rgb(55, 173, 199);
+}

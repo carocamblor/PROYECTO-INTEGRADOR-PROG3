@@ -9,7 +9,23 @@ class Card extends Component{
     constructor(props){
         super(props)
         this.state = {
+            ver: 'Ver más',
+            classVer: false
+        }
+    }
 
+    ver() {
+        if (this.state.ver === 'Ver más') {
+            this.setState({
+                ver: 'Ver menos',
+                classVer: true
+            })
+        } else {
+            this.setState({
+                ver: 'Ver más',
+                classVer: false
+            })
+            
         }
     }
 
@@ -20,12 +36,13 @@ class Card extends Component{
                     <img src={`${imagePrefix}${this.props.movieInfo.poster_path}`} alt=""/>
                     <h3>{this.props.movieInfo.original_title}</h3>
                     <p className="description">{this.props.movieInfo.overview}</p>
-                    <section className="aditional-info">
+                    <section className={this.state.classVer === false ? 'ocultar' : 'mostrar'}>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse qui atque.</p> {/* Aca podemos poner si es para adultos o no nuevamente con iconos*/}
                         <p>Release Date: {this.props.movieInfo.release_date} <FontAwesome name="calendar"/> </p> {/* En este tercer espacio, colocamos la fecha de lanzamiento junto al emote del calendario*/} 
                         <p> Rating: {this.props.movieInfo.vote_average} </p> {/* Podemos poner el puntaje con iconos*/} 
                     </section>
-                    {/* <a href="#">Ver más</a> */}
+                    <button className='ver' onClick={() => this.ver()}>{this.state.ver}</button>
+                    <button className='borrar'>Borrar</button>
                 </main>
             </article>
         )
