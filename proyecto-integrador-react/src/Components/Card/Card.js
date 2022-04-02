@@ -1,6 +1,9 @@
 import React, {Component} from "react";
 // let FontAwesome = require("react-fontawesome") //Otra forma de realizar lo de la linea de debajo pero con require()
 import FontAwesome from "react-fontawesome";
+import "./Card.css"
+
+let imagePrefix = "https://image.tmdb.org/t/p/original" //Necesario para poder traer las imagenes de la API
 
 class Card extends Component{
     constructor(props){
@@ -9,11 +12,12 @@ class Card extends Component{
 
         }
     }
+
     render(){
         return(
-            <article>
+            <article className="Card-movie">
                 <main>
-                    <img src="./img/image-default.png" alt=""/>
+                    <img src={`${imagePrefix}${this.props.movieInfo.poster_path}`} alt=""/>
                     <h3>{this.props.movieInfo.original_title}</h3>
                     <p className="description">{this.props.movieInfo.overview}</p>
                     <section className="aditional-info">
@@ -27,7 +31,6 @@ class Card extends Component{
         )
     }
 }
-
 
 export default Card;
 
