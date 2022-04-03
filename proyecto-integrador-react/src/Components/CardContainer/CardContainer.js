@@ -35,6 +35,13 @@ class CardContainer extends Component{
         //Metodo asociado al mouseOver que permitira ver la descripcion de la pelicula al pararnos sobre ella
     }
 
+    delete(id){
+        let updatedInfo = this.state.infoApi.filter(movie => movie.id !== id);
+        this.setState({
+            infoApi: updatedInfo
+        })
+    }
+
     render(){
         console.log(this.state.infoApi)
         console.log(this.state.nextPage)
@@ -42,7 +49,7 @@ class CardContainer extends Component{
             <section className="card-container">
                 {
                 this.state.infoApi.map( (oneMovie, idx) => 
-                <Card key={oneMovie + idx} movieInfo={oneMovie}/> )
+                <Card key={oneMovie + idx} movieInfo={oneMovie} delete={(id) => this.delete(id)}/> )
                 }
             </section>
         )

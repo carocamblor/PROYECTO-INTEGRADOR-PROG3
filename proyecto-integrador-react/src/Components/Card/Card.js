@@ -9,20 +9,20 @@ class Card extends Component{
     constructor(props){
         super(props)
         this.state = {
-            ver: 'Ver más',
+            ver: 'plus',
             classVer: false
         }
     }
 
     ver() {
-        if (this.state.ver === 'Ver más') {
+        if (this.state.ver === 'plus') {
             this.setState({
-                ver: 'Ver menos',
+                ver: 'minus',
                 classVer: true
             })
         } else {
             this.setState({
-                ver: 'Ver más',
+                ver: 'plus',
                 classVer: false
             })
             
@@ -41,8 +41,9 @@ class Card extends Component{
                         <p>Release Date: {this.props.movieInfo.release_date} <FontAwesome name="calendar"/> </p> {/* En este tercer espacio, colocamos la fecha de lanzamiento junto al emote del calendario*/} 
                         <p> Rating: {this.props.movieInfo.vote_average} </p> {/* Podemos poner el puntaje con iconos*/} 
                     </section>
-                    <button className='ver' onClick={() => this.ver()}>{this.state.ver}</button>
-                    <button className='borrar'>Borrar</button>
+                    
+                    <FontAwesome name={this.state.ver} className='ver' onClick={() => this.ver()}/>
+                    <FontAwesome name="trash" onClick={() => this.props.delete(this.props.movieInfo.id)}/>
                 </main>
             </article>
         )
