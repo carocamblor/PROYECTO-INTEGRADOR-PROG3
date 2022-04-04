@@ -1,13 +1,15 @@
 import React, {Component} from "react";
 import Card from "../Card/Card";
-
+import "./CardContainer.css"
 
 class CardContainer extends Component{
+    
     constructor(props){
         super(props)
         this.state = {
             infoApi: [],
-            nextPage: ""
+            nextPageNumber: 1,  //Inicialmente, estamos en la pagina 1 de peliculas
+            pageUrl: ""
         }
     }
 
@@ -19,7 +21,8 @@ class CardContainer extends Component{
             .then( data => 
                 this.setState({
                     infoApi: data.results,
-                    nextPage: `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=${data.page + 1}`
+                    pageUrl: `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=`,
+                    nextPageNumber: parseInt(data.page) + 1  
                 })
             )
             .catch( error =>
@@ -28,11 +31,25 @@ class CardContainer extends Component{
     }
 
     componentDidUpdate(){
- 
+        
     }
 
     seeMore(){
         //Metodo asociado al mouseOver que permitira ver la descripcion de la pelicula al pararnos sobre ella
+    }
+
+    bringMore(){
+        let apiUrl = this.state.pageUrl + (this.state.nextPageNumber).toString()
+        console.log(apiUrl)
+        fetch(apiUrl)
+            .then( response => response.json())
+            .then( data => this.setState(
+                {
+                    infoApi: this.state.infoApi.concat(data.results),
+                    nextPageNumber: parseInt(data.page) + 1 
+                }
+            ))
+            .catch( error => `El error es ${error}`)
     }
 
     delete(id){
@@ -45,13 +62,21 @@ class CardContainer extends Component{
     render(){
         console.log(this.state.infoApi)
         console.log(this.state.nextPage)
+        console.log(this.state.nextPageNumber)
         return(
-            <section className="card-container">
+            <React.Fragment>
+                <button type="button" onClick={() =>this.bringMore()}>Cargar más tarjetas</button>
                 {
-                this.state.infoApi.map( (oneMovie, idx) => 
-                <Card key={oneMovie + idx} movieInfo={oneMovie} delete={(id) => this.delete(id)}/> )
+                    this.state.infoApi.length === 0 ?
+                    <p>Cargando ... </p> : 
+                    <section className="card-container">
+                    {
+                    this.state.infoApi.map( (oneMovie, idx) => 
+                    <Card key={oneMovie + idx} movieInfo={oneMovie} delete={(id) => this.delete(id)}/> )
+                    }
+                    </section>
                 }
-            </section>
+            </React.Fragment>
         )
     }
 }
