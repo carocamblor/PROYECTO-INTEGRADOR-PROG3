@@ -12,7 +12,6 @@ function App() {
         <NavBar/>
       </header>
       <main>
-        <button type="button">Cargar más tarjetas</button>
         <CardContainer/>
       </main>
       <Footer/>
