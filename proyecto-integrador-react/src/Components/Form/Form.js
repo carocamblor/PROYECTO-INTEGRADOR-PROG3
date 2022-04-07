@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import './Form.css'
 
 class Form extends Component{ 
     constructor(props){
@@ -21,8 +22,7 @@ class Form extends Component{
     render(){
         return(
             <form onSubmit={(event)=> this.preventSubmit(event)} action="">
-                <input onChange={(event)=> this.controlChanges(event)} type="text" name="search" id="" placeholder="Search"/>
-                <button type="submit"><i className="fas fa-search"></i></button>
+                <input onChange={(event)=> this.controlChanges(event)} type="text" name="search" id="" placeholder="Buscar..."/>
             </form>
         )
     }

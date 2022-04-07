@@ -2,7 +2,7 @@ import React from "react";
 import NavBar from "./Components/NavBar/NavBar";
 import CardContainer from "./Components/CardContainer/CardContainer";
 import Footer from "./Components/Footer/Footer";
-
+import './App.css'
 
 function App() {
   return (

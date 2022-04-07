@@ -10,8 +10,7 @@ class NavBar extends Component{
     render(){
         return(
             <nav>
-                <i className="fas fa-th"></i>
-                <i className="fas fa-align-justify"></i>
+                
              
             </nav>
         )

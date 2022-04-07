@@ -67,7 +67,7 @@ class CardContainer extends Component{
         return(
             <React.Fragment>
                 <Form/>
-                <button type="button" onClick={() =>this.bringMore()}>Cargar más tarjetas</button>
+                <button type="button" className="button" onClick={() =>this.bringMore()}>Cargar más tarjetas</button>
                 {
                     this.state.infoApi.length === 0 ?
                     <p>Cargando ... </p> : 
