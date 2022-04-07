@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import Card from "../Card/Card";
 import "./CardContainer.css"
+import Form from "../Form/Form";
 
 class CardContainer extends Component{
     
@@ -65,6 +66,7 @@ class CardContainer extends Component{
         console.log(this.state.nextPageNumber)
         return(
             <React.Fragment>
+                <Form/>
                 <button type="button" onClick={() =>this.bringMore()}>Cargar más tarjetas</button>
                 {
                     this.state.infoApi.length === 0 ?
