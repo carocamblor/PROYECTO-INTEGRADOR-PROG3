@@ -25,6 +25,7 @@
     color: #303030;
     border-radius: 100%;
     margin-right: 5px;
+    cursor: pointer;
 }
 
 .see{
@@ -33,5 +34,9 @@
     color: #303030;
     border-radius: 100%;
     margin-right: 5px;
+    cursor: pointer;
 }
 
+.readMore{
+    padding: 5px;
+}

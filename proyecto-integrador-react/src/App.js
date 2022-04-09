@@ -8,7 +8,6 @@ function App() {
   return (
     <React.Fragment>
       <header>
-        <h1>Título/ Nombre de la app</h1>
         <NavBar/>
       </header>
       <main>
