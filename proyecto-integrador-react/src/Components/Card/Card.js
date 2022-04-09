@@ -74,26 +74,27 @@ class Card extends Component{
 
     render(){
         return(
-            <article className={this.props.display === 'row' ? "Card-movie-column" : "Card-movie-row"}> {/* Si es row, significa que el CardContainer tiene a las peliculas una al lado de la otra, pero la informacion debajo de cada una debera ir en columna. Si en cambio CardContainer tiene column, las peliculas van una debajo de la otra, pero con la informacion a un lado*/}
+            <article className={this.props.display === 'row' ? "card-movie-grid" : "card-movie-row"}> {/* Si es row, significa que el CardContainer tiene a las peliculas una al lado de la otra, pero la informacion debajo de cada una debera ir en columna. Si en cambio CardContainer tiene column, las peliculas van una debajo de la otra, pero con la informacion a un lado*/}
                 <main>
-                    <img src={`${imagePrefix}${this.props.movieInfo.poster_path}`} alt=""/>
-
-                    <h3>{this.props.movieInfo.original_title}</h3>
-                    <p className={this.state.classSee === false ? "show" : "hide"}>{this.state.movieDescription} 
-                    {this.state.movieDescription.length > 200 ? 
-                    <FontAwesome className="readMore" onClick={ () => this.seeWholeDescription() } name="plus"/>                          //If ternario para que el simbolo de leer mas aparezca unicamente en aquellos casos donde es necesario
-                    : 
-                    ""}
-                    </p> 
-                    <section className={this.state.classSee === false ? 'hide' : 'show'}>
-                        <p>{this.state.movieDescription}</p>
-                        <p>Audience: {this.state.audience}</p> {/* Aca podemos poner si es para adultos o no nuevamente con iconos*/}
-                        <p>Release Date: {this.props.movieInfo.release_date} <FontAwesome name="calendar"/> </p> {/* En este tercer espacio, colocamos lafecha de lanzamiento junto al emote del calendario*/} 
-                        <p>Rating: {this.props.movieInfo.vote_aseeage} </p> {/* Podemos poner el puntaje con iconos*/} 
-                    </section>
-                    
-                    <FontAwesome name={this.state.see} className='see' onClick={() => this.see()}/>
-                    <FontAwesome name="trash" className="delete" onClick={() => this.props.delete(this.props.movieInfo.id)}/>
+                    <img className={this.props.display === 'row' ? 'block' : 'inline'} src={`${imagePrefix}${this.props.movieInfo.poster_path}`} alt=""/>
+                    <div className={this.props.display === 'row' ? 'block' : 'inline'}>
+                        <h3>{this.props.movieInfo.original_title}</h3>
+                        <p className={this.state.classSee === false ? "show" : "hide"}>{this.state.movieDescription} 
+                        {this.state.movieDescription.length > 200 ? 
+                        <FontAwesome className="readMore" onClick={ () => this.seeWholeDescription() } name="plus"/>                          //If ternario para que el simbolo de leer mas aparezca unicamente en aquellos casos donde es necesario
+                        : 
+                        ""}
+                        </p> 
+                        <section className={this.state.classSee === false ? 'hide' : 'show'}>
+                            <p>{this.state.movieDescription}</p>
+                            <p>Audience: {this.state.audience}</p> {/* Aca podemos poner si es para adultos o no nuevamente con iconos*/}
+                            <p>Release Date: {this.props.movieInfo.release_date} <FontAwesome name="calendar"/> </p> {/* En este tercer espacio, colocamos lafecha de lanzamiento junto al emote del calendario*/} 
+                            <p>Rating: {this.props.movieInfo.vote_aseeage} </p> {/* Podemos poner el puntaje con iconos*/} 
+                        </section>
+                        
+                        <FontAwesome name={this.state.see} className='see' onClick={() => this.see()}/>
+                        <FontAwesome name="trash" className="delete" onClick={() => this.props.delete(this.props.movieInfo.id)}/>
+                    </div>
                 </main>
             </article>
         )
