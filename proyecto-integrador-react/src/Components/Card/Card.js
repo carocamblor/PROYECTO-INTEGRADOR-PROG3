@@ -13,12 +13,26 @@ class Card extends Component{
             classSee: false,
             movieDescription: "",
             movieDescriptionBackUp: "",
-            seeDescription: false
+            seeDescription: false,
+            audience: ''
         }
     }
 
     componentDidMount(){
-        this.descriptionLength()
+        this.descriptionLength();
+        this.audience();
+    }
+
+    audience(){
+        if(this.props.movieInfo.adult === true) {
+            this.setState({
+                audience: '+18'
+            })
+        } else {
+            this.setState({
+                audience: 'everyone'
+            })
+        }
     }
 
     descriptionLength(){
@@ -63,8 +77,8 @@ class Card extends Component{
             <article className={this.props.display === 'row' ? "Card-movie-column" : "Card-movie-row"}> {/* Si es row, significa que el CardContainer tiene a las peliculas una al lado de la otra, pero la informacion debajo de cada una debera ir en columna. Si en cambio CardContainer tiene column, las peliculas van una debajo de la otra, pero con la informacion a un lado*/}
                 <main>
                     <img src={`${imagePrefix}${this.props.movieInfo.poster_path}`} alt=""/>
+
                     <h3>{this.props.movieInfo.original_title}</h3>
-                   
                     <p className={this.state.classSee === false ? "show" : "hide"}>{this.state.movieDescription} 
                     {this.state.movieDescription.length > 200 ? 
                     <FontAwesome className="readMore" onClick={ () => this.seeWholeDescription() } name="plus"/>                          //If ternario para que el simbolo de leer mas aparezca unicamente en aquellos casos donde es necesario
@@ -73,7 +87,7 @@ class Card extends Component{
                     </p> 
                     <section className={this.state.classSee === false ? 'hide' : 'show'}>
                         <p>{this.state.movieDescription}</p>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse qui atque.</p> {/* Aca podemos poner si es para adultos o no nuevamente con iconos*/}
+                        <p>Audience: {this.state.audience}</p> {/* Aca podemos poner si es para adultos o no nuevamente con iconos*/}
                         <p>Release Date: {this.props.movieInfo.release_date} <FontAwesome name="calendar"/> </p> {/* En este tercer espacio, colocamos lafecha de lanzamiento junto al emote del calendario*/} 
                         <p>Rating: {this.props.movieInfo.vote_aseeage} </p> {/* Podemos poner el puntaje con iconos*/} 
                     </section>
