@@ -1,24 +1,37 @@
 .Card-movie{
-    background-color: green;
+    background-color: #303030;
     margin: 10px 0px;
-    width: 33%;
+    width: 216px;
+    padding: 10px;
+    border-radius: 5px;
 }
 
 .Card-movie img{
-    width: 200px;
-    height: 200px;
+    width: 216px;
+    height: 325px;
 }
 
-.mostrar{
+.show{
     display: block;
 }
 
-.ocultar{
+.hide{
     display: none;
 }
 
-.borrar{
+.delete{
+    background-color: white;
+    padding: 5px;
+    color: #303030;
+    border-radius: 100%;
+    margin-right: 5px;
 }
 
-.ver{
+.see{
+    background-color: white;
+    padding: 5px;
+    color: #303030;
+    border-radius: 100%;
+    margin-right: 5px;
 }
+

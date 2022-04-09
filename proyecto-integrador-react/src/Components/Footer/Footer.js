@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import './Footer.css'
 
 class Footer extends Component{
     constructor(props){
@@ -11,10 +12,10 @@ class Footer extends Component{
     render(){
         return(
             <footer>
-                <ul className="team">
-                    <li>Nombre integrante 1</li> {/*Podria cada integrante ser un componente a parte?*/}
-                    <li>Nombre integrante 2</li>
-                    <li>Nombre integrante 3</li>
+                <ul className="footer-team">
+                    <li>Pedro Busato</li> {/*Podria cada integrante ser un componente a parte?*/}
+                    <li>Carolina Camblor</li>
+                    <li>Alejo Cássera</li>
                 </ul>
             </footer>
         )

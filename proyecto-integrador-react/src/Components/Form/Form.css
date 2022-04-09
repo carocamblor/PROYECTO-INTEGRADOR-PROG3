@@ -1,0 +1,10 @@
+form {
+    display: inline;
+}
+
+form input {
+    height: 40px;
+    border-radius: 8px;
+    border: none;
+    margin-right: 8px;
+}
