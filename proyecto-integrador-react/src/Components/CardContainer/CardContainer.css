@@ -1,9 +1,22 @@
-.card-container{
+/* .card-container{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     flex-wrap: wrap;
-    /* background-color: red; */
+} */
+
+.card-container-row{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.card-container-column{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-wrap: wrap;  
 }
 
 .button{

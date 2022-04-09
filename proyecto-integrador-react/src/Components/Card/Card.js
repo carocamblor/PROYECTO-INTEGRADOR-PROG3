@@ -60,7 +60,7 @@ class Card extends Component{
 
     render(){
         return(
-            <article className={this.props.display === 'grid' ? "Card-movie-grid" : "Card-movie-row"}>
+            <article className={this.props.display === 'row' ? "Card-movie-column" : "Card-movie-row"}> {/* Si es row, significa que el CardContainer tiene a las peliculas una al lado de la otra, pero la informacion debajo de cada una debera ir en columna. Si en cambio CardContainer tiene column, las peliculas van una debajo de la otra, pero con la informacion a un lado*/}
                 <main>
                     <img src={`${imagePrefix}${this.props.movieInfo.poster_path}`} alt=""/>
                     <h3>{this.props.movieInfo.original_title}</h3>

@@ -1,4 +1,6 @@
-.Card-movie-grid{
+.Card-movie-column{
+    /* display: flex;
+    flex-direction: column; */  /*Tenemos que arreglar el css para que cada tarjeta tenga el ordenamiento de la informacion que queremos*/
     background-color: #303030;
     margin: 10px 0px;
     width: 216px;
@@ -7,6 +9,8 @@
 }
 
 .Card-movie-row{
+    /* display: flex;
+    flex-direction: row; */
     background-color: #303030;
     margin: 10px 0px;
     width: 100%;
@@ -15,7 +19,7 @@
 }
 
 
-.Card-movie-grid img, .Card-movie-row img{
+.Card-movie-column img, .Card-movie-row img{
     width: 216px;
     height: 325px;
 }

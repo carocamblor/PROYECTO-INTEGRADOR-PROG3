@@ -12,7 +12,8 @@ class CardContainer extends Component{
             infoApi: [],
             nextPageNumber: 1,  //Inicialmente, estamos en la pagina 1 de peliculas
             pageUrl: "",
-            display: "grid"
+            display: "grid",
+            display2: "row"
         }
     }
 
@@ -53,6 +54,20 @@ class CardContainer extends Component{
         }
     }
 
+    changeDisplay2(){
+        if (this.state.display2 === "row") {
+            this.setState({
+                display2: "column",
+            },
+            ()=> console.log(this.state.display2))
+        } else {
+            this.setState({
+                display2: "row",
+            },
+            ()=> console.log(this.state.display2))
+        }
+    }
+
     bringMore(){
         let apiUrl = this.state.pageUrl + (this.state.nextPageNumber).toString()
         console.log(apiUrl)
@@ -75,26 +90,29 @@ class CardContainer extends Component{
     }
 
     render(){
-        console.log(this.state.infoApi)
-        console.log(this.state.nextPage)
-        console.log(this.state.nextPageNumber)
+        // console.log(this.state.infoApi)
+        // console.log(this.state.nextPage)
+        // console.log(this.state.nextPageNumber)
         return(
             <React.Fragment>
                 <Form/>
                 <button type="button" className="button" onClick={() =>this.bringMore()}>Cargar más tarjetas</button>
-                <button type="button" className="button" onClick={() =>this.changeDisplay()}>
+                <button type="button" className="button" onClick={() =>this.changeDisplay2()}>
                     <FontAwesome name="bars"/>
                 </button>
-                {
-                    this.state.infoApi.length === 0 ?
-                    <p>Cargando ... </p> : 
-                    <section className="card-container" >
+                {/* <section className={this.state.display2 === "row" ? "card-container-row" : "card-container-column"}>  Teniamos un React.Fragment, pero este no permite recibir el atributo className="" por lo que lo cambiamos */}
+
                     {
-                    this.state.infoApi.map( (oneMovie, idx) => 
-                    <Card key={oneMovie + idx} movieInfo={oneMovie} delete={(id) => this.delete(id)} display={this.state.display}/> )
+                        this.state.infoApi.length === 0 ?
+                        <p>Cargando ... </p> : 
+                        <section className={this.state.display2 === "row" ? "card-container-row" : "card-container-column"} >
+                        {
+                        this.state.infoApi.map( (oneMovie, idx) => 
+                        <Card key={oneMovie + idx} movieInfo={oneMovie} delete={(id) => this.delete(id)} display={this.state.display2}/> )
+                        }
+                        </section>
                     }
-                    </section>
-                }
+                {/* </section> */}
             </React.Fragment>
         )
     }
