@@ -12,10 +12,10 @@ class NavBar extends Component{
             <nav>
                 <i className="fas fa-th"></i>
                 <i className="fas fa-align-justify"></i>
-                <form action="">
+                {/* <form action="">
                     <input type="text" name="search" id="" placeholder="Search"/>
                     <button type="submit"><i className="fas fa-search"></i></button>
-                </form>
+                </form> */}
             </nav>
         )
     }
