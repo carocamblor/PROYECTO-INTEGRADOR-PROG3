@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import Card from "../Card/Card";
 import "./CardContainer.css"
 import Form from "../Form/Form";
+import FontAwesome from "react-fontawesome";
 
 class CardContainer extends Component{
     
@@ -10,7 +11,8 @@ class CardContainer extends Component{
         this.state = {
             infoApi: [],
             nextPageNumber: 1,  //Inicialmente, estamos en la pagina 1 de peliculas
-            pageUrl: ""
+            pageUrl: "",
+            display: "grid"
         }
     }
 
@@ -37,6 +39,18 @@ class CardContainer extends Component{
 
     seeMore(){
         //Metodo asociado al mouseOver que permitira ver la descripcion de la pelicula al pararnos sobre ella
+    }
+
+    changeDisplay(){
+        if (this.state.display === 'grid') {
+            this.setState({
+                display: 'full',
+            })
+        } else {
+            this.setState({
+                display: 'grid',
+            })
+        }
     }
 
     bringMore(){
@@ -68,13 +82,16 @@ class CardContainer extends Component{
             <React.Fragment>
                 <Form/>
                 <button type="button" className="button" onClick={() =>this.bringMore()}>Cargar más tarjetas</button>
+                <button type="button" className="button" onClick={() =>this.changeDisplay()}>
+                    <FontAwesome name="bars"/>
+                </button>
                 {
                     this.state.infoApi.length === 0 ?
                     <p>Cargando ... </p> : 
-                    <section className="card-container">
+                    <section className="card-container" >
                     {
                     this.state.infoApi.map( (oneMovie, idx) => 
-                    <Card key={oneMovie + idx} movieInfo={oneMovie} delete={(id) => this.delete(id)}/> )
+                    <Card key={oneMovie + idx} movieInfo={oneMovie} delete={(id) => this.delete(id)} display={this.state.display}/> )
                     }
                     </section>
                 }

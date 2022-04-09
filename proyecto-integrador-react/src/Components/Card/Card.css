@@ -1,4 +1,4 @@
-.Card-movie{
+.Card-movie-grid{
     background-color: #303030;
     margin: 10px 0px;
     width: 216px;
@@ -6,7 +6,16 @@
     border-radius: 5px;
 }
 
-.Card-movie img{
+.Card-movie-row{
+    background-color: #303030;
+    margin: 10px 0px;
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+
+.Card-movie-grid img, .Card-movie-row img{
     width: 216px;
     height: 325px;
 }

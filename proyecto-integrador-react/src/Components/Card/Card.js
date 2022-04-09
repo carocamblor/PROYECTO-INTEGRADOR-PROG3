@@ -9,8 +9,8 @@ class Card extends Component{
     constructor(props){
         super(props)
         this.state = {
-            ver: 'plus',
-            classVer: false,
+            see: 'plus',
+            classSee: false,
             movieDescription: "",
             movieDescriptionBackUp: "",
             seeDescription: false
@@ -44,40 +44,41 @@ class Card extends Component{
         }
     }
 
-    ver() {
-        if (this.state.ver === 'plus') {
+    see() {
+        if (this.state.see === 'plus') {
             this.setState({
-                ver: 'minus',
-                classVer: true
+                see: 'minus',
+                classSee: true
             })
         } else {
             this.setState({
-                ver: 'plus',
-                classVer: false
+                see: 'plus',
+                classSee: false
             })
         }
     }
 
     render(){
         return(
-            <article className="Card-movie">
+            <article className={this.props.display === 'grid' ? "Card-movie-grid" : "Card-movie-row"}>
                 <main>
                     <img src={`${imagePrefix}${this.props.movieInfo.poster_path}`} alt=""/>
                     <h3>{this.props.movieInfo.original_title}</h3>
                    
-                    <p className={this.state.classVer === false ? "show" : "hide"}>{this.state.movieDescription} 
+                    <p className={this.state.classSee === false ? "show" : "hide"}>{this.state.movieDescription} 
                     {this.state.movieDescription.length > 200 ? 
                     <FontAwesome className="readMore" onClick={ () => this.seeWholeDescription() } name="plus"/>                          //If ternario para que el simbolo de leer mas aparezca unicamente en aquellos casos donde es necesario
                     : 
                     ""}
                     </p> 
-                    <section className={this.state.classVer === false ? 'hide' : 'show'}>
+                    <section className={this.state.classSee === false ? 'hide' : 'show'}>
+                        <p>{this.state.movieDescription}</p>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse qui atque.</p> {/* Aca podemos poner si es para adultos o no nuevamente con iconos*/}
                         <p>Release Date: {this.props.movieInfo.release_date} <FontAwesome name="calendar"/> </p> {/* En este tercer espacio, colocamos lafecha de lanzamiento junto al emote del calendario*/} 
-                        <p>Rating: {this.props.movieInfo.vote_average} </p> {/* Podemos poner el puntaje con iconos*/} 
+                        <p>Rating: {this.props.movieInfo.vote_aseeage} </p> {/* Podemos poner el puntaje con iconos*/} 
                     </section>
                     
-                    <FontAwesome name={this.state.ver} className='see' onMouseEnter={() => this.ver()}/>
+                    <FontAwesome name={this.state.see} className='see' onClick={() => this.see()}/>
                     <FontAwesome name="trash" className="delete" onClick={() => this.props.delete(this.props.movieInfo.id)}/>
                 </main>
             </article>
