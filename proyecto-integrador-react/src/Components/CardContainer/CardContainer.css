@@ -46,7 +46,6 @@
   touch-action: manipulation;
 }
 
-.button-1:hover,
-.button-1:focus {
+.button:hover {
   background-color: #F082AC;
 }

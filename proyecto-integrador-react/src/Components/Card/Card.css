@@ -12,8 +12,16 @@
     width: 100%;
     padding: 10px;
     border-radius: 5px;
+    box-sizing: border-box;
 }
 
+.main-column{
+    display: flex;
+}
+
+.div-column{
+    margin-left: 8px;
+}
 
 .card-movie-grid img, .card-movie-row img{
     width: 216px;
