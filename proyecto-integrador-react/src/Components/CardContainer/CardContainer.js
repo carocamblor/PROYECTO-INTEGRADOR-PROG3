@@ -92,11 +92,18 @@ class CardContainer extends Component{
         console.log (this.props)
         return(
             <React.Fragment>
+                <section className="interactions">
                 <Form filterMovies ={(filtrado)=> this.filterMovies(filtrado)}/>
                 <button type="button" className="button" onClick={() =>this.bringMore()}>Cargar más tarjetas</button>
                 <button type="button" className="button" id="button-display" onClick={() =>this.changeDisplay()}>
-                    <FontAwesome name="bars"/>
+                    {
+                        this.state.display === "row" ?
+                        <FontAwesome name="bars"/> :
+                        <FontAwesome name="table"/>
+                    }
+                    
                 </button>
+                </section>
                 {/* <section className={this.state.display === "row" ? "card-container-row" : "card-container-column"}>  Teniamos un React.Fragment, pero este no permite recibir el atributo className="" por lo que lo cambiamos */}
 
                     {
