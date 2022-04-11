@@ -78,7 +78,7 @@ class Card extends Component{
                 <main className={this.props.display === 'row' ? "" : "main-column"}>
                     <img src={`${imagePrefix}${this.props.movieInfo.poster_path}`} alt=""/>
                     <div className={this.props.display === 'row' ? "" : "div-column"}>
-                        <h3>{this.props.movieInfo.original_title}</h3>
+                        <h3>{this.props.movieInfo.title}</h3>
                         <p className={this.state.classSee === false ? "show" : "hide"}>{this.state.movieDescription} 
                         {this.state.movieDescription.length > 200 ? 
                         <FontAwesome className="readMore" onClick={ () => this.seeWholeDescription() } name="plus"/>                          //If ternario para que el simbolo de leer mas aparezca unicamente en aquellos casos donde es necesario

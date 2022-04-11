@@ -10,6 +10,7 @@ class CardContainer extends Component{
         super(props)
         this.state = {
             infoApi: [],
+            infoApiBKP: [],
             nextPageNumber: 1,  //Inicialmente, estamos en la pagina 1 de peliculas
             pageUrl: "",
             display: "grid",
@@ -26,6 +27,7 @@ class CardContainer extends Component{
             .then( data => 
                 this.setState({
                     infoApi: data.results,
+                    infoApiBKP: data.results,
                     pageUrl: `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=`,
                     nextPageNumber: parseInt(data.page) + 1  
                 })
@@ -37,10 +39,6 @@ class CardContainer extends Component{
 
     componentDidUpdate(){
         
-    }
-
-    seeMore(){
-        //Metodo asociado al mouseOver que permitira ver la descripcion de la pelicula al pararnos sobre ella
     }
 
     changeDisplay(){
@@ -77,6 +75,7 @@ class CardContainer extends Component{
             .then( data => this.setState(
                 {
                     infoApi: this.state.infoApi.concat(data.results),
+                    infoApiBKP : this.state.infoApiBKP.concat(data.result),
                     nextPageNumber: parseInt(data.page) + 1 
                 }
             ))
@@ -90,12 +89,12 @@ class CardContainer extends Component{
         })
     }  
 
-    filtrarPersonajes(filtro){
+    filterMovies(filtro){
         //se va a encargar de filtrar lo que escribamos en el buscador para que termine mostrandote unicamente lo que matchea con los personajes
-        let personajesFiltrados = this.state.title.filter( oneCharacter => oneCharacter.title.includes(filtro))
+        let peliculasFiltradas = this.state.infoApiBKP.filter( oneMovie => oneMovie.title.toLowerCase().includes(filtro.toLowerCase()))
 
         this.setState ({
-            title : personajesFiltrados,
+            infoApi : peliculasFiltradas,
         })
     }
 
@@ -114,8 +113,10 @@ class CardContainer extends Component{
                 {/* <section className={this.state.display2 === "row" ? "card-container-row" : "card-container-column"}>  Teniamos un React.Fragment, pero este no permite recibir el atributo className="" por lo que lo cambiamos */}
 
                     {
-                        this.state.infoApi.length === 0 ?
+                        this.state.infoApiBKP.length === 0 ?
                         <p>Cargando ... </p> : 
+                        this.state.infoApi.length === 0 ?
+                        <p>No hay resultados</p> :
                         <section className={this.state.display2 === "row" ? "card-container-row" : "card-container-column"} >
                         {
                         this.state.infoApi.map( (oneMovie, idx) => 
