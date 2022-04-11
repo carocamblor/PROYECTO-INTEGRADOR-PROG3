@@ -30,7 +30,7 @@ class Card extends Component{
             })
         } else {
             this.setState({
-                audience: 'everyone'
+                audience: 'Everyone'
             })
         }
     }
@@ -86,10 +86,10 @@ class Card extends Component{
                         ""}
                         </p> 
                         <section className={this.state.classSee === false ? 'hide' : 'show'}>
-                            <p>{this.state.movieDescription}</p>
+                            <p>{this.props.movieInfo.overview}</p>
                             <p>Audience: {this.state.audience}</p> {/* Aca podemos poner si es para adultos o no nuevamente con iconos*/}
                             <p>Release Date: {this.props.movieInfo.release_date} <FontAwesome name="calendar"/> </p> {/* En este tercer espacio, colocamos lafecha de lanzamiento junto al emote del calendario*/} 
-                            <p>Rating: {this.props.movieInfo.vote_aseeage} </p> {/* Podemos poner el puntaje con iconos*/} 
+                            <p>Rating: {this.props.movieInfo.vote_average} </p> {/* Podemos poner el puntaje con iconos*/} 
                         </section>
                         
                         <FontAwesome name={this.state.see} className='see' onClick={() => this.see()}/>
