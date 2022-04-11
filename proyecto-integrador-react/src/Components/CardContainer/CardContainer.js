@@ -14,6 +14,7 @@ class CardContainer extends Component{
             pageUrl: "",
             display: "grid",
             display2: "row"
+          
         }
     }
 
@@ -89,13 +90,23 @@ class CardContainer extends Component{
         })
     }  
 
+    filtrarPersonajes(filtro){
+        //se va a encargar de filtrar lo que escribamos en el buscador para que termine mostrandote unicamente lo que matchea con los personajes
+        let personajesFiltrados = this.state.title.filter( oneCharacter => oneCharacter.title.includes(filtro))
+
+        this.setState ({
+            title : personajesFiltrados,
+        })
+    }
+
     render(){
-        // console.log(this.state.infoApi)
+        console.log(this.state.infoApi)
         // console.log(this.state.nextPage)
         // console.log(this.state.nextPageNumber)
+        console.log (this.props)
         return(
             <React.Fragment>
-                <Form/>
+                <Form filterCharacters ={(filtrado)=> this.filterCharacters(filtrado)}/>
                 <button type="button" className="button" onClick={() =>this.bringMore()}>Cargar más tarjetas</button>
                 <button type="button" className="button" onClick={() =>this.changeDisplay2()}>
                     <FontAwesome name="bars"/>

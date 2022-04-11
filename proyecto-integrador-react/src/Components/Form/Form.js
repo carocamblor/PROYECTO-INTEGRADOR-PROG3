@@ -15,14 +15,14 @@ class Form extends Component{
     controlChanges (event){
         this.setState({
             value: event.target.value 
-        },()=>console.log(this.state.value)
+        }, ()=>this.props.filterCharacters(this.state.value)
         )
     }
 
     render(){
         return(
             <form onSubmit={(event)=> this.preventSubmit(event)} action="">
-                <input onChange={(event)=> this.controlChanges(event)} type="text" name="search" id="" placeholder="Buscar..."/>
+                <input onChange={(event)=> this.controlChanges(event)} type="text" value={this.state.value}/>
             </form>
         )
     }

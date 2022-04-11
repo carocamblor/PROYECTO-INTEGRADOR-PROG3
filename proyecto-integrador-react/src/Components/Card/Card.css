@@ -1,6 +1,4 @@
-.Card-movie-column{
-    /* display: flex;
-    flex-direction: column; */  /*Tenemos que arreglar el css para que cada tarjeta tenga el ordenamiento de la informacion que queremos*/
+.card-movie-grid{
     background-color: #303030;
     margin: 10px 0px;
     width: 216px;
@@ -8,18 +6,24 @@
     border-radius: 5px;
 }
 
-.Card-movie-row{
-    /* display: flex;
-    flex-direction: row; */
+.card-movie-row{
     background-color: #303030;
     margin: 10px 0px;
     width: 100%;
     padding: 10px;
     border-radius: 5px;
+    box-sizing: border-box;
 }
 
+.main-column{
+    display: flex;
+}
 
-.Card-movie-column img, .Card-movie-row img{
+.div-column{
+    margin-left: 8px;
+}
+
+.card-movie-grid img, .card-movie-row img{
     width: 216px;
     height: 325px;
 }
@@ -52,4 +56,12 @@
 
 .readMore{
     padding: 5px;
+}
+
+.block{
+    display: block;
+}
+
+.inline{
+    display: inline;
 }
