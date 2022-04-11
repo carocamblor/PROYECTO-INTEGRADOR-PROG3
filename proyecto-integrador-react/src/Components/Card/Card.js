@@ -45,6 +45,7 @@ class Card extends Component{
     }
 
     seeWholeDescription(){
+        console.log(this.props.movieInfo)
         if (this.state.seeDescription === false){
             this.setState({
                 movieDescription: this.props.movieInfo.overview,
