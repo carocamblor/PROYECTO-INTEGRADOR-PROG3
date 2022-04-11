@@ -11,16 +11,31 @@ class Card extends Component{
         this.state = {
             see: 'plus',
             classSee: false,
-            movieDescription: "",
-            movieDescriptionBackUp: "",
             seeDescription: false,
+            shortDescription: '',
             audience: ''
         }
     }
 
     componentDidMount(){
-        this.descriptionLength();
+        // this.descriptionLength();
         this.audience();
+        this.shortDescription();
+    }
+
+    shortDescription(){
+        if (this.props.movieInfo.overview.length >= 100) {
+            let shortenedDescription = this.props.movieInfo.overview.substring(0,99)
+            let shortDescription = shortenedDescription + '...'
+            this.setState({
+                shortDescription: shortDescription
+            })
+        } else {
+            let shortDescription = this.props.movieInfo.overview
+            this.setState({
+                shortDescription: shortDescription
+            })
+        }
     }
 
     audience(){
@@ -35,29 +50,29 @@ class Card extends Component{
         }
     }
 
-    descriptionLength(){
-        let movie = this.props.movieInfo.overview.length <= 200 ? this.props.movieInfo.overview :
-        this.props.movieInfo.overview.substring(0,201) 
-        this.setState({
-            movieDescription: movie,
-            movieDescriptionBackUp: movie //MovieDescriptionBackUp conserva una copia de la descripcion acortada de la pelicula, la cual no se modifica en ningun momento
-        })
-    }
+    // descriptionLength(){
+    //     let movie = this.props.movieInfo.overview.length <= 200 ? this.props.movieInfo.overview :
+    //     this.props.movieInfo.overview.substring(0,201) 
+    //     this.setState({
+    //         movieDescription: movie,
+    //         movieDescriptionBackUp: movie //MovieDescriptionBackUp conserva una copia de la descripcion acortada de la pelicula, la cual no se modifica en ningun momento
+    //     })
+    // }
 
-    seeWholeDescription(){
-        console.log(this.props.movieInfo)
-        if (this.state.seeDescription === false){
-            this.setState({
-                movieDescription: this.props.movieInfo.overview,
-                seeDescription: true
-            })
-        }else{
-            this.setState({
-                movieDescription: this.state.movieDescriptionBackUp,
-                seeDescription:false
-            })
-        }
-    }
+    // seeWholeDescription(){
+    //     console.log(this.props.movieInfo)
+    //     if (this.state.seeDescription === false){
+    //         this.setState({
+    //             movieDescription: this.props.movieInfo.overview,
+    //             seeDescription: true
+    //         })
+    //     }else{
+    //         this.setState({
+    //             movieDescription: this.state.movieDescriptionBackUp,
+    //             seeDescription:false
+    //         })
+    //     }
+    // }
 
     see() {
         if (this.state.see === 'plus') {
@@ -80,12 +95,19 @@ class Card extends Component{
                     <img src={`${imagePrefix}${this.props.movieInfo.poster_path}`} alt=""/>
                     <div className={this.props.display === 'row' ? "" : "div-column"}>
                         <h3>{this.props.movieInfo.title}</h3>
-                        <p className={this.state.classSee === false ? "show" : "hide"}>{this.state.movieDescription} 
+                        <p> {
+                            this.state.classSee === false ?
+                            this.state.shortDescription :
+                            ''
+                        }
+                        </p>
+                        
+                        {/* <p className={this.state.classSee === false ? "show" : "hide"}>{this.state.movieDescription} 
                         {this.state.movieDescription.length > 200 ? 
                         <FontAwesome className="readMore" onClick={ () => this.seeWholeDescription() } name="plus"/>                          //If ternario para que el simbolo de leer mas aparezca unicamente en aquellos casos donde es necesario
                         : 
                         ""}
-                        </p> 
+                        </p>  */}
                         <section className={this.state.classSee === false ? 'hide' : 'show'}>
                             <p>{this.props.movieInfo.overview}</p>
                             <p>Audience: {this.state.audience}</p> {/* Aca podemos poner si es para adultos o no nuevamente con iconos*/}
