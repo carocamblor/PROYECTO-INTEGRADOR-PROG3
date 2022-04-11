@@ -15,7 +15,7 @@ class Form extends Component{
     controlChanges (event){
         this.setState({
             value: event.target.value 
-        }, ()=>this.props.filterCharacters(this.state.value)
+        }, ()=>this.props.filterMovies(this.state.value)
         )
     }
 

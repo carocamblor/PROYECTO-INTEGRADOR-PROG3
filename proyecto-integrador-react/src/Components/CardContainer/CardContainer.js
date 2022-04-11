@@ -106,7 +106,7 @@ class CardContainer extends Component{
         console.log (this.props)
         return(
             <React.Fragment>
-                <Form filterCharacters ={(filtrado)=> this.filterCharacters(filtrado)}/>
+                <Form filterMovies ={(filtrado)=> this.filterMovies(filtrado)}/>
                 <button type="button" className="button" onClick={() =>this.bringMore()}>Cargar más tarjetas</button>
                 <button type="button" className="button" onClick={() =>this.changeDisplay2()}>
                     <FontAwesome name="bars"/>
