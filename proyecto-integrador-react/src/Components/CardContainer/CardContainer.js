@@ -87,7 +87,7 @@ class CardContainer extends Component{
         this.setState({
             infoApi: updatedInfo
         })
-    }
+    }  
 
     render(){
         // console.log(this.state.infoApi)
