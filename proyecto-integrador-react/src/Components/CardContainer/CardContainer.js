@@ -88,7 +88,7 @@ class CardContainer extends Component{
         this.setState({
             infoApi: updatedInfo
         })
-    }
+    }  
 
     filtrarPersonajes(filtro){
         //se va a encargar de filtrar lo que escribamos en el buscador para que termine mostrandote unicamente lo que matchea con los personajes

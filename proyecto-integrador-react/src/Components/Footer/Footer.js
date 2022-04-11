@@ -12,6 +12,7 @@ class Footer extends Component{
     render(){
         return(
             <footer>
+                <img src="/images/movieDBLogo.svg"/>
                 <ul className="footer-team">
                     <li>Pedro Busato</li> {/*Podria cada integrante ser un componente a parte?*/}
                     <li>Carolina Camblor</li>
