@@ -20,21 +20,16 @@ class Card extends Component{
     componentDidMount(){
         // this.descriptionLength();
         this.audience();
-        this.shortDescription();
+
     }
 
-    shortDescription(){
-        if (this.props.movieInfo.overview.length >= 100) {
-            let shortenedDescription = this.props.movieInfo.overview.substring(0,99)
+    shortDescription(overview){
+        if (overview.length >= 50) {
+            let shortenedDescription = overview.substring(0,99)
             let shortDescription = shortenedDescription + '...'
-            this.setState({
-                shortDescription: shortDescription
-            })
+            return shortDescription
         } else {
-            let shortDescription = this.props.movieInfo.overview
-            this.setState({
-                shortDescription: shortDescription
-            })
+            return overview
         }
     }
 
@@ -49,6 +44,8 @@ class Card extends Component{
             })
         }
     }
+
+    
 
     // descriptionLength(){
     //     let movie = this.props.movieInfo.overview.length <= 200 ? this.props.movieInfo.overview :
@@ -89,6 +86,7 @@ class Card extends Component{
     }
 
     render(){
+        console.log(this.shortDescription(this.props.movieInfo.overview))
         return(
             <article className={this.props.display === 'row' ? "card-movie-grid" : "card-movie-row"}> {/* Si es row, significa que el CardContainer tiene a las peliculas una al lado de la otra, pero la informacion debajo de cada una debera ir en columna. Si en cambio CardContainer tiene column, las peliculas van una debajo de la otra, pero con la informacion a un lado*/}
                 <main className={this.props.display === 'row' ? "" : "main-column"}>
@@ -97,7 +95,7 @@ class Card extends Component{
                         <h3>{this.props.movieInfo.title}</h3>
                         <p> {
                             this.state.classSee === false ?
-                            this.state.shortDescription :
+                            this.shortDescription(this.props.movieInfo.overview) :
                             ''
                         }
                         </p>
