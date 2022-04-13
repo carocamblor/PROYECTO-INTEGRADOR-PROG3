@@ -87,22 +87,22 @@ class CardContainer extends Component{
         this.setState({
             infoApi: updatedInfo
         })
-    }  
-
+    }   
+   
     filterMovies(filtro){
-        //se va a encargar de filtrar lo que escribamos en el buscador para que termine mostrandote unicamente lo que matchea con los personajes
+        //se va a encar gar de filtrar lo que escribamos en el buscador para que termine mostrandote unicamente lo que matchea con los personajes
         let peliculasFiltradas = this.state.infoApiBKP.filter( oneMovie => oneMovie.title.toLowerCase().includes(filtro.toLowerCase()))
 
         this.setState ({
             infoApi : peliculasFiltradas,
-        })
+        },
+        ()=> console.log("Cambie"))
     }
 
     render(){
         console.log(this.state.infoApi)
         // console.log(this.state.nextPage)
         // console.log(this.state.nextPageNumber)
-        console.log (this.props)
         return(
             <React.Fragment>
                 <Form filterMovies ={(filtrado)=> this.filterMovies(filtrado)}/>

@@ -21,6 +21,12 @@ class Card extends Component{
     componentDidMount(){
         this.descriptionLength();
         this.audience();
+        console.log(this.props.movieInfo)
+    }
+
+    componentDidUpdate(){
+        console.log(this.props.movieInfo)
+        console.log("Me actualice")
     }
 
     audience(){
@@ -35,24 +41,24 @@ class Card extends Component{
         }
     }
 
-    descriptionLength(){
+    descriptionLength(){  //Se ejecuta cuando se renderiza el componente
         let movie = this.props.movieInfo.overview.length <= 200 ? this.props.movieInfo.overview :
         this.props.movieInfo.overview.substring(0,201) 
         this.setState({
             movieDescription: movie,
-            movieDescriptionBackUp: movie //MovieDescriptionBackUp conserva una copia de la descripcion acortada de la pelicula, la cual no se modifica en ningun momento
+            movieDescriptionBackUp: movie //MovieDescriptionBackUp conserva una copia de la descripcion de la pelicula (acortada o no), la cual no se modifica en ningun momento
         })
     }
 
     seeWholeDescription(){
         if (this.state.seeDescription === false){
             this.setState({
-                movieDescription: this.props.movieInfo.overview,
+                movieDescription: this.props.movieInfo.overview, //Descripcion entera
                 seeDescription: true
             })
         }else{
             this.setState({
-                movieDescription: this.state.movieDescriptionBackUp,
+                movieDescription: this.state.movieDescriptionBackUp, //Descripcion sea corta o larga
                 seeDescription:false
             })
         }
