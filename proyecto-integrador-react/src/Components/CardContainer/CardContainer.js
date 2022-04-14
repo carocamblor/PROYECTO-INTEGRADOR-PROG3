@@ -9,26 +9,25 @@ class CardContainer extends Component{
     constructor(props){
         super(props)
         this.state = {
+            apiKey: "10f78e3fda22c77ede57586773891285",
+            nextPageUrl: "",
             infoApi: [],
             infoApiBKP: [],
-            nextPageNumber: 1,  //Inicialmente, estamos en la pagina 1 de peliculas
-            pageUrl: "",
+            infoApiBKP2: [], //Aqui almacenamos nuestras primeras 20 peliculas --> Util para la ejecucion del metodo resetCards
             display: "row"
-          
         }
     }
 
     componentDidMount(){
-        let apiKey = "10f78e3fda22c77ede57586773891285"
-        let apiUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=${this.state.pageNumber}`
+        let apiUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${this.state.apiKey}&language=en-US&page=1`
         fetch(apiUrl)
             .then( response => response.json())
             .then( data => 
                 this.setState({
                     infoApi: data.results,
                     infoApiBKP: data.results,
-                    pageUrl: `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=`,
-                    nextPageNumber: parseInt(data.page) + 1  
+                    infoApiBKP2: data.results,
+                    nextPageUrl: `https://api.themoviedb.org/3/movie/popular?api_key=${this.state.apiKey}&language=en-US&page=${parseInt(data.page) + 1}`,
                 })
             )
             .catch( error =>
@@ -36,8 +35,48 @@ class CardContainer extends Component{
             )
     }
 
-    componentDidUpdate(){
-        
+    componentDidUpdate(){   
+    }
+
+    // Metodo para traer mas tarjetas
+    bringMore(){
+        let apiUrl = this.state.nextPageUrl
+        fetch(apiUrl)
+            .then( response => response.json())
+            .then( data => this.setState(
+                {
+                    infoApi: this.state.infoApi.concat(data.results),
+                    infoApiBKP : this.state.infoApiBKP.concat(data.result),
+                    nextPageUrl: `https://api.themoviedb.org/3/movie/popular?api_key=${this.state.apiKey}&language=en-US&page=${parseInt(data.page) + 1}`,
+                }
+            ))
+            .catch( error => `El error es ${error}`)
+    }
+
+    // Metodo para resetear nuestras tarjetas --> Volvemos a las 20 originales
+    resetCards(){
+        this.setState({
+            infoApi: this.state.infoApiBKP2,
+            nextPageUrl: `https://api.themoviedb.org/3/movie/popular?api_key=${this.state.apiKey}&language=en-US&page=2` //Reseteamos para que el bringMore comienza desde la segunda pagina nuevamente
+        })
+    }
+
+    // Metodo para eliminar tarjeta --> Pasamos como props al componente Card.js
+    delete(id){
+        let updatedInfo = this.state.infoApi.filter(movie => movie.id !== id);
+        this.setState({
+            infoApi: updatedInfo
+        })
+    }   
+   
+    // Metodo para filtrar peliculas --> Pasamos como props al componente Form.js
+    filterMovies(filtro){
+        let peliculasFiltradas = this.state.infoApiBKP.filter( oneMovie => oneMovie.title.toLowerCase().includes(filtro.toLowerCase()))
+
+        this.setState ({
+            infoApi : peliculasFiltradas,
+        },
+        ()=> console.log("Cambie"))
     }
 
     changeDisplay(){
@@ -54,47 +93,13 @@ class CardContainer extends Component{
         }
     }
 
-    bringMore(){
-        let apiUrl = this.state.pageUrl + (this.state.nextPageNumber).toString()
-        console.log(apiUrl)
-        fetch(apiUrl)
-            .then( response => response.json())
-            .then( data => this.setState(
-                {
-                    infoApi: this.state.infoApi.concat(data.results),
-                    infoApiBKP : this.state.infoApiBKP.concat(data.result),
-                    nextPageNumber: parseInt(data.page) + 1 
-                }
-            ))
-            .catch( error => `El error es ${error}`)
-    }
-
-    delete(id){
-        let updatedInfo = this.state.infoApi.filter(movie => movie.id !== id);
-        this.setState({
-            infoApi: updatedInfo
-        })
-    }   
-   
-    filterMovies(filtro){
-        //se va a encar gar de filtrar lo que escribamos en el buscador para que termine mostrandote unicamente lo que matchea con los personajes
-        let peliculasFiltradas = this.state.infoApiBKP.filter( oneMovie => oneMovie.title.toLowerCase().includes(filtro.toLowerCase()))
-
-        this.setState ({
-            infoApi : peliculasFiltradas,
-        },
-        ()=> console.log("Cambie"))
-    }
-
     render(){
-        console.log(this.state.infoApi)
-        // console.log(this.state.nextPage)
-        // console.log(this.state.nextPageNumber)
         return(
             <React.Fragment>
                 <section className="interactions">
                 <Form filterMovies ={(filtrado)=> this.filterMovies(filtrado)}/>
                 <button type="button" className="button" onClick={() =>this.bringMore()}>Cargar más tarjetas</button>
+                <button type="button" className="button" onClick={() => this.resetCards()}>Tarjetas Iniciales</button>
                 <button type="button" className="button" id="button-display" onClick={() =>this.changeDisplay()}>
                     {
                         this.state.display === "row" ?

@@ -11,9 +11,9 @@ class Card extends Component{
         this.state = {
             see: 'plus',
             classSee: false,
-            seeDescription: false,
-            shortDescription: '',
-            audience: ''
+            // seeDescription: false,
+            // shortDescription: '',
+            // audience: ''
         }
     }
 
@@ -23,54 +23,33 @@ class Card extends Component{
 
     }
 
-    shortDescription(overview){
-        if (overview.length >= 50) {
-            let shortenedDescription = overview.substring(0,99)
-            let shortDescription = shortenedDescription + '...'
-            return shortDescription
-        } else {
-            return overview
-        }
+    shortDescription(overview){ //Lo lleve a un if ternario
+        let shortDescription = (overview.length >= 50) ?
+            overview.substring(0,99) + '...' :
+            overview
+        return shortDescription
     }
 
-    audience(){
-        if(this.props.movieInfo.adult === true) {
-            this.setState({
-                audience: '+18'
-            })
-        } else {
-            this.setState({
-                audience: 'Everyone'
-            })
-        }
-    }
-
-    
-
-    // descriptionLength(){
-    //     let movie = this.props.movieInfo.overview.length <= 200 ? this.props.movieInfo.overview :
-    //     this.props.movieInfo.overview.substring(0,201) 
-    //     this.setState({
-    //         movieDescription: movie,
-    //         movieDescriptionBackUp: movie //MovieDescriptionBackUp conserva una copia de la descripcion acortada de la pelicula, la cual no se modifica en ningun momento
-    //     })
-    // }
-
-    // seeWholeDescription(){
-    //     console.log(this.props.movieInfo)
-    //     if (this.state.seeDescription === false){
+    // audience(){
+    //     if(this.props.movieInfo.adult === true) {
     //         this.setState({
-    //             movieDescription: this.props.movieInfo.overview,
-    //             seeDescription: true
+    //             audience: '+18'
     //         })
-    //     }else{
+    //     } else {
     //         this.setState({
-    //             movieDescription: this.state.movieDescriptionBackUp,
-    //             seeDescription:false
+    //             audience: 'Everyone'
     //         })
     //     }
     // }
 
+    audience(forAdult){
+        let viewersAge = (forAdult === false) ?
+             "Everyone" :
+             "+18"
+        return viewersAge
+    }
+
+    
     see() {
         if (this.state.see === 'plus') {
             this.setState({
@@ -86,31 +65,25 @@ class Card extends Component{
     }
 
     render(){ 
-        console.log(this.shortDescription(this.props.movieInfo.overview))
+        // console.log(this.shortDescription(this.props.movieInfo.overview))
         return(
             <article className={this.props.display === 'row' ? "card-movie-grid" : "card-movie-row"}> {/* Si es row, significa que el CardContainer tiene a las peliculas una al lado de la otra, pero la informacion debajo de cada una debera ir en columna. Si en cambio CardContainer tiene column, las peliculas van una debajo de la otra, pero con la informacion a un lado*/}
                 <main className={this.props.display === 'row' ? "" : "main-column"}>
                     <img src={`${imagePrefix}${this.props.movieInfo.poster_path}`} alt=""/>
                     <div className={this.props.display === 'row' ? "" : "div-column"}>
                         <h3>{this.props.movieInfo.title}</h3>
-                        <p> {
+                        <p> 
+                            {
                             this.state.classSee === false ?
                             this.shortDescription(this.props.movieInfo.overview) :
-                            ''
-                        }
+                            ""
+                            }
                         </p>
-                        
-                        {/* <p className={this.state.classSee === false ? "show" : "hide"}>{this.state.movieDescription} 
-                        {this.state.movieDescription.length > 200 ? 
-                        <FontAwesome className="readMore" onClick={ () => this.seeWholeDescription() } name="plus"/>                          //If ternario para que el simbolo de leer mas aparezca unicamente en aquellos casos donde es necesario
-                        : 
-                        ""}
-                        </p>  */}
                         <section className={this.state.classSee === false ? 'hide' : 'show'}>
                             <p>{this.props.movieInfo.overview}</p>
-                            <p>Audience: {this.state.audience}</p> {/* Aca podemos poner si es para adultos o no nuevamente con iconos*/}
-                            <p>Release Date: {this.props.movieInfo.release_date} <FontAwesome name="calendar"/> </p> {/* En este tercer espacio, colocamos lafecha de lanzamiento junto al emote del calendario*/} 
-                            <p>Rating: {this.props.movieInfo.vote_average} </p> {/* Podemos poner el puntaje con iconos*/} 
+                            <p>Audience: {this.audience(this.props.movieInfo.adult)}</p> 
+                            <p>Release Date: {this.props.movieInfo.release_date} <FontAwesome name="calendar"/> </p> 
+                            <p>Rating: {this.props.movieInfo.vote_average} </p> 
                         </section>
                         
                         <FontAwesome name={this.state.see} className='see' onClick={() => this.see()}/>
