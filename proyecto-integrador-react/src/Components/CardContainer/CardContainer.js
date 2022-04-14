@@ -13,8 +13,7 @@ class CardContainer extends Component{
             infoApiBKP: [],
             nextPageNumber: 1,  //Inicialmente, estamos en la pagina 1 de peliculas
             pageUrl: "",
-            display: "grid",
-            display2: "row"
+            display: "row"
           
         }
     }
@@ -42,28 +41,16 @@ class CardContainer extends Component{
     }
 
     changeDisplay(){
-        if (this.state.display === 'grid') {
+        if (this.state.display === "row") {
             this.setState({
-                display: 'full',
-            })
+                display: "column",
+            },
+            ()=> console.log(this.state.display))
         } else {
             this.setState({
-                display: 'grid',
-            })
-        }
-    }
-
-    changeDisplay2(){
-        if (this.state.display2 === "row") {
-            this.setState({
-                display2: "column",
+                display: "row",
             },
-            ()=> console.log(this.state.display2))
-        } else {
-            this.setState({
-                display2: "row",
-            },
-            ()=> console.log(this.state.display2))
+            ()=> console.log(this.state.display))
         }
     }
 
@@ -105,22 +92,29 @@ class CardContainer extends Component{
         // console.log(this.state.nextPageNumber)
         return(
             <React.Fragment>
+                <section className="interactions">
                 <Form filterMovies ={(filtrado)=> this.filterMovies(filtrado)}/>
                 <button type="button" className="button" onClick={() =>this.bringMore()}>Cargar más tarjetas</button>
-                <button type="button" className="button" onClick={() =>this.changeDisplay2()}>
-                    <FontAwesome name="bars"/>
+                <button type="button" className="button" id="button-display" onClick={() =>this.changeDisplay()}>
+                    {
+                        this.state.display === "row" ?
+                        <FontAwesome name="bars"/> :
+                        <FontAwesome name="table"/>
+                    }
+                    
                 </button>
-                {/* <section className={this.state.display2 === "row" ? "card-container-row" : "card-container-column"}>  Teniamos un React.Fragment, pero este no permite recibir el atributo className="" por lo que lo cambiamos */}
+                </section>
+                {/* <section className={this.state.display === "row" ? "card-container-row" : "card-container-column"}>  Teniamos un React.Fragment, pero este no permite recibir el atributo className="" por lo que lo cambiamos */}
 
                     {
                         this.state.infoApiBKP.length === 0 ?
                         <p>Cargando ... </p> : 
                         this.state.infoApi.length === 0 ?
                         <p>No hay resultados</p> :
-                        <section className={this.state.display2 === "row" ? "card-container-row" : "card-container-column"} >
+                        <section className={this.state.display === "row" ? "card-container-row" : "card-container-column"} >
                         {
                         this.state.infoApi.map( (oneMovie, idx) => 
-                        <Card key={oneMovie + idx} movieInfo={oneMovie} delete={(id) => this.delete(id)} display={this.state.display2}/> )
+                        <Card key={oneMovie + idx} movieInfo={oneMovie} delete={(id) => this.delete(id)} display={this.state.display}/> )
                         }
                         </section>
                     }

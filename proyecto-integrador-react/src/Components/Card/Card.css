@@ -65,3 +65,16 @@
 .inline{
     display: inline;
 }
+
+@media only screen and (max-width: 420px) {
+
+.card-movie-grid{
+    width: 100%;
+}
+
+.card-movie-grid img {
+    width: 100%;
+    height: auto;
+}
+
+}

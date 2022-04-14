@@ -19,6 +19,12 @@
     flex-wrap: wrap;  
 }
 
+section.interactions{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
 .button{
   background-color: #EA4C89;
   border-radius: 8px;
@@ -48,4 +54,16 @@
 
 .button:hover {
   background-color: #F082AC;
+}
+
+@media only screen and (max-width: 420px) {
+
+#button-display{
+  display: none;
+}
+
+main {
+  width: 100%;
+}
+
 }

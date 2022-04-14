@@ -29,7 +29,7 @@ class NavBar extends Component{
     render(){
         return(
             <nav>
-                <h1> Título/ Nombre de la app </h1>
+                <img className="wolf-logo" src="/images/logo-wolf-react.png"/>
                 <section>
                 <FontAwesome onClick={() => this.seeSearchTools()} className="angle-icon" name={this.state.icon}/>
                     <div className={this.state.seeOrder === false ? "hide" : "show"}>

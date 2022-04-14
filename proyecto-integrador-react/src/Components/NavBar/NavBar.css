@@ -2,7 +2,12 @@ nav{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0px 10px;
+    padding: 0;
+    margin-bottom: 8px;
+}
+
+.wolf-logo{
+    height: 100px;
 }
 
 .angle-icon{
@@ -17,4 +22,11 @@ nav{
 
 .hide{
     display: none;
+}
+
+@media only screen and (max-width: 420px) {
+    .wolf-logo{
+        height: auto;
+        width: 85%;
+    }
 }
