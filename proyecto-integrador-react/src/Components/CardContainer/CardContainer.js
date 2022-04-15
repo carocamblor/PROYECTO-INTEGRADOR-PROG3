@@ -126,7 +126,7 @@ class CardContainer extends Component{
                         <section className={this.state.display === "row" ? "card-container-row" : "card-container-column"} >
                         {
                         this.state.infoApi.map( (oneMovie, idx) => 
-                        <Card key={oneMovie + idx} movieInfo={oneMovie} delete={(id) => this.delete(id)} display={this.state.display}/> )
+                        <Card key={oneMovie.title + idx} movieInfo={oneMovie} delete={(id) => this.delete(id)} display={this.state.display}/> )
                         }
                         </section>
                     }
