@@ -11,9 +11,10 @@ class CardContainer extends Component{
         this.state = {
             apiKey: "10f78e3fda22c77ede57586773891285",
             nextPageUrl: "",
+            infoApi2: [],
             infoApi: [],
             infoApiBKP: [],
-            infoApiBKP2: [], //Aqui almacenamos nuestras primeras 20 peliculas --> Util para la ejecucion del metodo resetCards
+            first20movies: [], //Aqui almacenamos nuestras primeras 20 peliculas --> Util para la ejecucion del metodo resetCards
             display: "row"
         }
     }
@@ -25,8 +26,9 @@ class CardContainer extends Component{
             .then( data => 
                 this.setState({
                     infoApi: data.results,
+                    infoApi2: data.results,
                     infoApiBKP: data.results,
-                    infoApiBKP2: data.results,
+                    first20movies: data.results,
                     nextPageUrl: `https://api.themoviedb.org/3/movie/popular?api_key=${this.state.apiKey}&language=en-US&page=${parseInt(data.page) + 1}`,
                 })
             )
@@ -46,7 +48,8 @@ class CardContainer extends Component{
             .then( data => this.setState(
                 {
                     infoApi: this.state.infoApi.concat(data.results),
-                    infoApiBKP : this.state.infoApiBKP.concat(data.result),
+                    infoApi2: this.state.infoApi2.concat(data.results),
+                    infoApiBKP : this.state.infoApiBKP.concat(data.results),
                     nextPageUrl: `https://api.themoviedb.org/3/movie/popular?api_key=${this.state.apiKey}&language=en-US&page=${parseInt(data.page) + 1}`,
                 }
             ))
@@ -56,7 +59,8 @@ class CardContainer extends Component{
     // Metodo para resetear nuestras tarjetas --> Volvemos a las 20 originales
     resetCards(){
         this.setState({
-            infoApi: this.state.infoApiBKP2,
+            infoApi: this.state.first20movies,
+            infoApi2: this.state.first20movies,
             nextPageUrl: `https://api.themoviedb.org/3/movie/popular?api_key=${this.state.apiKey}&language=en-US&page=2` //Reseteamos para que el bringMore comienza desde la segunda pagina nuevamente
         })
     }
@@ -65,13 +69,15 @@ class CardContainer extends Component{
     delete(id){
         let updatedInfo = this.state.infoApi.filter(movie => movie.id !== id);
         this.setState({
-            infoApi: updatedInfo
+            infoApi: updatedInfo,
+            infoApi2: updatedInfo
         })
     }   
    
     // Metodo para filtrar peliculas --> Pasamos como props al componente Form.js
     filterMovies(filtro){
-        let peliculasFiltradas = this.state.infoApiBKP.filter( oneMovie => oneMovie.title.toLowerCase().includes(filtro.toLowerCase()))
+        // console.log(filtro)
+        let peliculasFiltradas = this.state.infoApi2.filter( oneMovie => oneMovie.title.toLowerCase().includes(filtro.toLowerCase()))
 
         this.setState ({
             infoApi : peliculasFiltradas,
@@ -94,6 +100,7 @@ class CardContainer extends Component{
     }
 
     render(){
+        // console.log(this.state.infoApiBKP)
         return(
             <React.Fragment>
                 <section className="interactions">

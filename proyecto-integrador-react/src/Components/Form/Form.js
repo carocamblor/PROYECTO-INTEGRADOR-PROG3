@@ -13,6 +13,7 @@ class Form extends Component{
         event.preventDefault();
     }
     controlChanges (event){
+        // console.log(event)
         this.setState({
             value: event.target.value 
         }, ()=>this.props.filterMovies(this.state.value)
