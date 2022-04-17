@@ -29,7 +29,7 @@ class NavBar extends Component{
     render(){
         return(
             <nav>
-                <img className="wolf-logo" src="/images/logo-wolf-react.png"/>
+                <img className="wolf-logo" src="/images/logo-wolf-react.png" alt="wolf react logo"/>
                 <section>
                 <FontAwesome onClick={() => this.seeSearchTools()} className="angle-icon" name={this.state.icon}/>
                     <div className={this.state.seeOrder === false ? "hide" : "show"}>
