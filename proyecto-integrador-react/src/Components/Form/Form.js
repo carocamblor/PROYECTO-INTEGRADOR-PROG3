@@ -2,8 +2,7 @@ import React, {Component} from "react";
 import './Form.css'
 import FontAwesome from "react-fontawesome";
 
-class Form extends Component { 
-
+class Form extends Component{ 
     constructor(props){
         super(props)
         this.state = {
@@ -11,26 +10,34 @@ class Form extends Component {
         }
 
     }
-
     preventSubmit(event){
         event.preventDefault();
     }
-
     controlChanges (event){
+        // console.log(event)
         this.setState({
             value: event.target.value 
-        }, () => this.props.filterMovies(this.state.value)
+        }, ()=>this.props.filterMovies(this.state.value)
         )
     }
 
     render(){
         return(
+            <div className="prueba">
+
+            <button type="button" className="buttonsearch"> 
+            <FontAwesome name="search"/>
+            </button>
+        
             <form onSubmit={(event)=> this.preventSubmit(event)} action="">
-                <input placeholder="Buscar..."   onChange={(event)=> this.controlChanges(event)} type="text" value={this.state.value}/>
+                <input placeholder="Buscar..." onChange={(event)=> this.controlChanges(event)} type="text" value={this.state.value}/>
+            
             </form>
+            </div>
+
         )
     }
 
-}
 
+}
 export default Form;
