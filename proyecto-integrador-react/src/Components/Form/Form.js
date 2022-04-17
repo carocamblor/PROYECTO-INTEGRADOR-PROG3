@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import './Form.css'
+import FontAwesome from "react-fontawesome";
 
 class Form extends Component{ 
     constructor(props){
@@ -23,7 +24,7 @@ class Form extends Component{
     render(){
         return(
             <form onSubmit={(event)=> this.preventSubmit(event)} action="">
-                <input onChange={(event)=> this.controlChanges(event)} type="text" value={this.state.value}/>
+                <input placeholder="Buscar..."   onChange={(event)=> this.controlChanges(event)} type="text" value={this.state.value}/>
             </form>
         )
     }
