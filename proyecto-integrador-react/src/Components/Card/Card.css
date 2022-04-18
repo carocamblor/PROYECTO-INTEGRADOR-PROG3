@@ -1,4 +1,4 @@
-.card-movie-grid{
+.card-movie-row{
     background-color: #303030;
     margin: 10px 0px;
     width: 216px;
@@ -6,16 +6,13 @@
     border-radius: 5px;
 }
 
-.card-movie-row{
+.card-movie-column{
     background-color: #303030;
     margin: 10px 0px;
     width: 100%;
     padding: 10px;
     border-radius: 5px;
     box-sizing: border-box;
-}
-
-.main-column{
     display: flex;
 }
 
@@ -23,7 +20,7 @@
     margin-left: 8px;
 }
 
-.card-movie-grid img, .card-movie-row img{
+.card-movie-row img, .card-movie-column img{
     width: 216px;
     height: 325px;
 }

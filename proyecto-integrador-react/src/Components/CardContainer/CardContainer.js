@@ -83,13 +83,11 @@ class CardContainer extends Component{
         if (this.state.display === "row") {
             this.setState({
                 display: "column",
-            },
-            ()=> console.log(this.state.display))
+            })
         } else {
             this.setState({
                 display: "row",
-            },
-            ()=> console.log(this.state.display))
+            })
         }
     }
 
@@ -103,6 +101,7 @@ class CardContainer extends Component{
 
                 <button type="button" className="button" onClick={() =>this.bringMore()}>Cargar más tarjetas</button>
                 <button type="button" className="button" onClick={() => this.resetCards()}>Tarjetas Iniciales</button>
+
                 <button type="button" className="button" id="button-display" onClick={() =>this.changeDisplay()}>
                 {this.state.display === "row" ?
                 <FontAwesome name="bars"/> :

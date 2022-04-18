@@ -47,10 +47,9 @@ class Card extends Component {
 
     render(){ 
         return(
-            <article className={this.props.display === 'row' ? "card-movie-grid" : "card-movie-row"}>
-                
-                <main className={this.props.display === 'row' ? "" : "main-column"}>
-                    
+
+            <article className={this.props.display === 'row' ? "card-movie-row" : "card-movie-column"}>
+                                    
                     <img src={`${imagePrefix}${this.props.movieInfo.poster_path}`} alt={this.props.movieInfo.title}/>
                     
                     <div className={this.props.display === 'row' ? "" : "div-column"}>
@@ -71,11 +70,10 @@ class Card extends Component {
                         </section>
                         
                         <FontAwesome name={this.state.see} className='see' onClick={() => this.see()}/>
+                        
                         <FontAwesome name="trash" className="delete" onClick={() => this.props.delete(this.props.movieInfo.id)}/>
                     
                     </div>
-
-                </main>
 
             </article>
         )
