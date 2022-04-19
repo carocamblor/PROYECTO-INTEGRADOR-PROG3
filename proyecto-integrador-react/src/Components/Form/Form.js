@@ -10,9 +10,11 @@ class Form extends Component{
         }
 
     }
+    //Va a evitar que el formulario se mande 
     preventSubmit(event){
         event.preventDefault();
     }
+
     controlChanges (event){
         // console.log(event)
         this.setState({

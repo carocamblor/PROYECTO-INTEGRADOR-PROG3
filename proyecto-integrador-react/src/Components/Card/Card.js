@@ -46,6 +46,7 @@ class Card extends Component {
     }
 
     render(){ 
+
         return(
 
             <article className={this.props.display === 'row' ? "card-movie-row" : "card-movie-column"}>

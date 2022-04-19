@@ -49,6 +49,14 @@ section.interactions{
   background-color: #F082AC;
 }
 
+.gif{
+  justify-content: space-between;
+  height: 250px;
+  margin: 100px;
+}
+
+
+
 @media only screen and (max-width: 420px) {
 
   #button-display{

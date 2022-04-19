@@ -111,10 +111,9 @@ class CardContainer extends Component{
                 </section>
 
                 {this.state.infoApiFullBKP.length === 0 ?
-                <p>Cargando... </p> :
-
+                <img src="/images/cargando1.gif" alt="tmbd logo"/>: //caso RARISIMO donde si le pones clase no aparece
                 this.state.infoApiRender.length === 0 ?
-                <p>No hay resultados</p> :
+                <img className="gif" src="/images/insomnia.gif" alt="tmbd logo"/>:
 
                 <section className={this.state.display === "row" ? "card-container-row" : "card-container-column"}>
                 {this.state.infoApiRender.map( (oneMovie, idx) => 
