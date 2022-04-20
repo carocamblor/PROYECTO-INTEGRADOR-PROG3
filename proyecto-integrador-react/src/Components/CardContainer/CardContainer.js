@@ -97,7 +97,9 @@ class CardContainer extends Component{
                 
                 <section className="interactions">
 
-                <Form filterMovies ={(filtrado)=> this.filterMovies(filtrado)}/>
+                <Form filterMovies ={(filtrado)=> this.filterMovies(filtrado)}/> 
+
+
 
                 <button type="button" className="button" onClick={() =>this.bringMore()}>Cargar más tarjetas</button>
                 <button type="button" className="button" onClick={() => this.resetCards()}>Tarjetas Iniciales</button>
@@ -111,7 +113,7 @@ class CardContainer extends Component{
                 </section>
 
                 {this.state.infoApiFullBKP.length === 0 ?
-                <img src="/images/cargando1.gif" alt="tmbd logo"/>: //caso RARISIMO donde si le pones clase no aparece
+                <img className= "gif" src="/images/cargando1.gif" alt="tmbd logo"/>: 
                 this.state.infoApiRender.length === 0 ?
                 <img className="gif" src="/images/insomnia.gif" alt="tmbd logo"/>:
 

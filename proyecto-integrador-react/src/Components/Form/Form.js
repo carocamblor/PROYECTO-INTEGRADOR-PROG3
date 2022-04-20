@@ -9,21 +9,24 @@ class Form extends Component{
             value : ''
         }
 
-    }
+    }     
+     
     //Va a evitar que el formulario se mande 
+ 
     preventSubmit(event){
         event.preventDefault();
     }
 
     controlChanges (event){
-        // console.log(event)
+     
         this.setState({
             value: event.target.value 
+            
         }, ()=>this.props.filterMovies(this.state.value)
         )
     }
-
-    render(){
+  
+    render(){  
         return(
             <div className="prueba">
 
@@ -34,11 +37,12 @@ class Form extends Component{
             <form onSubmit={(event)=> this.preventSubmit(event)} action="">
                 <input placeholder="Buscar..." onChange={(event)=> this.controlChanges(event)} type="text" value={this.state.value}/>
             
+       
             </form>
             </div>
 
         )
-    }
+    } 
 
 
 }

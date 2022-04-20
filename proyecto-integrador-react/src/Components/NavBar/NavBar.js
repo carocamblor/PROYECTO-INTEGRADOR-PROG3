@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import FontAwesome from "react-fontawesome";
+
 import "./NavBar.css";
 
 class NavBar extends Component{
@@ -30,15 +30,7 @@ class NavBar extends Component{
         return(
             <nav>
                 <img className="wolf-logo" src="/images/logo-wolf-react.png" alt="wolf react logo"/>
-                <section>
-                <FontAwesome onClick={() => this.seeSearchTools()} className="angle-icon" name={this.state.icon}/>
-                    <div className={this.state.seeOrder === false ? "hide" : "show"}>
-                        <h3>Order by:</h3>
-                        <ul>
-                            <li>Most Recent</li>
-                        </ul>
-                    </div>    
-                </section>
+             
                 
             </nav>
         )
