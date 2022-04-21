@@ -1,7 +1,7 @@
 import React, {Component} from "react";
-import Card from "../Card/Card";
 import "./Main.css"
 import Header from "../Header/Header"
+import CardContainer from "../CardContainer/CardContainer";
 import FontAwesome from "react-fontawesome";
 
 class Main extends Component{
@@ -74,7 +74,8 @@ class Main extends Component{
         this.setState({
             infoApiRender: this.state.first10movies,
             infoApiBKP: this.state.first10movies,
-            nextPageUrl: `https://api.themoviedb.org/3/movie/popular?api_key=${this.state.apiKey}&language=en-US&page=1` //Reseteamos para que el bringMore comienza desde la segunda pagina nuevamente
+            nextPageUrl: `https://api.themoviedb.org/3/movie/popular?api_key=${this.state.apiKey}&language=en-US&page=1`, //Reseteamos para que el bringMore comienza desde la primera pagina nuevamente
+            apiCallCount: 1
         })
     }
 
@@ -140,10 +141,8 @@ class Main extends Component{
                 this.state.infoApiRender.length === 0 ?
                 <img className="gif" src="/images/insomnia.gif" alt="tmbd logo"/> :
 
-                <section className={this.state.display === "row" ? "card-container-row" : "card-container-column"}>
-                {this.state.infoApiRender.map( (oneMovie, idx) => 
-                <Card key={oneMovie.title + idx} movieInfo={oneMovie} delete={(id) => this.delete(id)} display={this.state.display}/>)}
-                </section>}
+                <CardContainer display={this.state.display} infoApiRender={this.state.infoApiRender} delete={(id) => this.delete(id)}/>
+                }
 
             </React.Fragment>
         )

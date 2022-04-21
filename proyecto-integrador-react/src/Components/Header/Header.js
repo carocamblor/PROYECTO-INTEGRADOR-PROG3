@@ -2,11 +2,10 @@ import React, {Component} from "react";
 import Form from '../Form/Form'
 import "./Header.css";
 
-class NavBar extends Component{
+class Header extends Component{
     constructor(props){
         super(props)
         this.state = {
-
         }
     }
 
@@ -18,7 +17,6 @@ class NavBar extends Component{
             </header>
         )
     }
-
 }
 
-export default NavBar;
+export default Header;

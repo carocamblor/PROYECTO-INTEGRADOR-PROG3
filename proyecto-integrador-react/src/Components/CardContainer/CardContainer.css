@@ -1,0 +1,15 @@
+.card-container-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 90px;
+  }
+  
+  .card-container-column{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin-bottom: 90px;
+  }
