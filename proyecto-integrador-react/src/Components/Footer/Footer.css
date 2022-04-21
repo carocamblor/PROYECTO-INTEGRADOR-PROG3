@@ -17,5 +17,19 @@ footer {
 }
 
 .tmdb-logo{
-    width: 35%;
+    width: 15%;
 }
+
+@media only screen and (max-width: 420px) {
+
+    .footer{
+        padding: 0;
+        padding-bottom: 10px;
+    }
+
+    .tmdb-logo{
+        width: 35%;
+    }
+
+    
+    }

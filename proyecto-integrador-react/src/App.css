@@ -2,6 +2,8 @@ body {
     background-color: #202020;
     font-family: system-ui;
     color: white;
-    box-sizing: border-box;
 }
 
+*{
+    box-sizing: border-box;
+}

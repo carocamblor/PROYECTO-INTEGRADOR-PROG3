@@ -1,7 +1,7 @@
 .card-movie-row{
     background-color: #303030;
     margin: 10px 0px;
-    width: 216px;
+    width: 236px;
     padding: 10px;
     border-radius: 5px;
 }
@@ -12,7 +12,6 @@
     width: 100%;
     padding: 10px;
     border-radius: 5px;
-    box-sizing: border-box;
     display: flex;
 }
 
@@ -65,11 +64,11 @@
 
 @media only screen and (max-width: 420px) {
 
-.card-movie-grid{
+.card-movie-row{
     width: 100%;
 }
 
-.card-movie-grid img {
+.card-movie-row img {
     width: 100%;
     height: auto;
 }
