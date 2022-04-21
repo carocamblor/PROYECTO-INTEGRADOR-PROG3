@@ -1,0 +1,19 @@
+.wolf-logo{
+    height: 70px;
+    display: block;
+}
+
+.show{
+    display: block;
+}
+
+.hide{
+    display: none;
+}
+
+@media only screen and (max-width: 420px) {
+    .wolf-logo{
+        height: auto;
+        width: 85%;
+    }
+}

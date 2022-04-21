@@ -1,4 +1,0 @@
-Ideas a incluir:
-
-1 - En cada "Card" podemos poner que la descripcion aparezca con un evento del tipo mouseOver
-2 - En lugar de que la descripcion aparezca directo, que suele ser un texto extenso, podemos poner en su lugar iconos que reflejen la cantidad de estrellas, si la pelicula es para adultos y su fecha de lanzamiento

@@ -8,27 +8,25 @@ class Form extends Component{
         this.state = {
             value : ''
         }
-
     }     
      
     //Va a evitar que el formulario se mande 
- 
     preventSubmit(event){
         event.preventDefault();
     }
 
     controlChanges (event){
-     
         this.setState({
             value: event.target.value 
             
-        }, ()=>this.props.filterMovies(this.state.value)
+        },() => this.props.filterMovies(this.state.value)
         )
     }
   
     render(){  
         return(
-            <div className="prueba">
+
+            <React.Fragment>
 
             <button type="button" className="buttonsearch"> 
             <FontAwesome name="search"/>
@@ -36,10 +34,9 @@ class Form extends Component{
         
             <form onSubmit={(event)=> this.preventSubmit(event)} action="">
                 <input placeholder="Buscar..." onChange={(event)=> this.controlChanges(event)} type="text" value={this.state.value}/>
-            
-       
             </form>
-            </div>
+
+            </React.Fragment>
 
         )
     } 
